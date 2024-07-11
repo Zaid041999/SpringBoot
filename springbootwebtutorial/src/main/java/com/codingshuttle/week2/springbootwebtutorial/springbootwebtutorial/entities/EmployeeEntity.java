@@ -1,10 +1,18 @@
 package com.codingshuttle.week2.springbootwebtutorial.springbootwebtutorial.entities;
 
 import jakarta.persistence.*;
+import lombok.AllArgsConstructor;
+import lombok.Getter;
+import lombok.NoArgsConstructor;
+import lombok.Setter;
 
 import java.time.LocalDate;
 
 @Entity
+@Getter
+@Setter
+@AllArgsConstructor
+@NoArgsConstructor
 @Table(name = "employees")
 public class EmployeeEntity {
     @Id
@@ -16,7 +24,7 @@ public class EmployeeEntity {
     private LocalDate dateOfJoining;
     private Boolean isActive;
 
-    public Long getId() {
+   /* public Long getId() {
         return id;
     }
 
@@ -62,5 +70,5 @@ public class EmployeeEntity {
 
     public void setActive(Boolean active) {
         isActive = active;
-    }
+    }*/
 }

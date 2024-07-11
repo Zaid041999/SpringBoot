@@ -1,8 +1,10 @@
 package com.codingshuttle.week2.springbootwebtutorial.springbootwebtutorial.repositories;
 
+import com.codingshuttle.week2.springbootwebtutorial.springbootwebtutorial.entities.EmployeeEntity;
+import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.stereotype.Repository;
 
 @Repository
-public class EmployeeRepository {
+public interface EmployeeRepository extends JpaRepository<EmployeeEntity,Long> {
 
 }
