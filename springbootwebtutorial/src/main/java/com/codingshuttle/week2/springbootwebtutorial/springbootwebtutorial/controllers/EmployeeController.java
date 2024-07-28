@@ -44,8 +44,8 @@ public class EmployeeController {
     public ResponseEntity<EmployeeDTO> getEmployeeById(@PathVariable(name="employeeId") Long id){
         Optional<EmployeeDTO> employeeDTO = employeeService.getEmployeeById(id);
         return employeeDTO
-                .map(employeeDTO1 -> ResponseEntity.ok(employeeDTO1))
-                .orElse(ResponseEntity.notFound().build());
+                .map(employeeDTO1 -> ResponseEntity.ok(employeeDTO1))// If present, return HTTP 200 with employee data
+                .orElse(ResponseEntity.notFound().build());// If not present, return HTTP 404
     }
 
     @GetMapping
@@ -62,25 +62,25 @@ public class EmployeeController {
   public ResponseEntity<EmployeeDTO> createNewEmployee(@RequestBody EmployeeDTO inputEmployee){
 
       EmployeeDTO savedEmployeeDTO = employeeService.createNewEmployee(inputEmployee);
-      return new ResponseEntity<>(savedEmployeeDTO, HttpStatus.CREATED);
+      return new ResponseEntity<>(savedEmployeeDTO, HttpStatus.CREATED); // Return 201 Created with the saved employee
   }
 
   @PutMapping(path = "/{employeeId}")
   public ResponseEntity<EmployeeDTO> updateEmployeeById(@RequestBody EmployeeDTO employeeDTO,@PathVariable Long employeeId){
-      return ResponseEntity.ok(employeeService.updateEmployeeById(employeeId,employeeDTO));
+      return ResponseEntity.ok(employeeService.updateEmployeeById(employeeId,employeeDTO));// return HTTP 200 with employee data
     }
 
   @DeleteMapping(path = "/{employeeId}")
   public ResponseEntity<Boolean> deleteEmployeeById(@PathVariable Long employeeId){
       boolean gotDeleted = employeeService.deleteEmployeeById(employeeId);
-      if(!gotDeleted) return ResponseEntity.notFound().build();
-      return ResponseEntity.ok(true);
+      if(!gotDeleted) return ResponseEntity.notFound().build();// If not present, return HTTP 404
+      return ResponseEntity.ok(true);// If present, return HTTP 200 with employee data
     }
 
   @PatchMapping(path = "/{employeeId}")
   public ResponseEntity<EmployeeDTO> updatePartialEmployeeById(@RequestBody Map<String, Object> updates, @PathVariable Long employeeId){
         EmployeeDTO employeeDTO = employeeService.updatePartialEmployeeById(employeeId,updates);
-        if(employeeDTO == null) return ResponseEntity.notFound().build();
-        return ResponseEntity.ok(employeeDTO);
+        if(employeeDTO == null) return ResponseEntity.notFound().build();// If not present, return HTTP 404
+        return ResponseEntity.ok(employeeDTO);// If present, return HTTP 200 with employee data
     }
 }
