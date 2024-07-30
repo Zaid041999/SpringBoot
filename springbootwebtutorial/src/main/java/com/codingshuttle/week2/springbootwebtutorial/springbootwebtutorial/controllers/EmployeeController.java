@@ -3,6 +3,7 @@ package com.codingshuttle.week2.springbootwebtutorial.springbootwebtutorial.cont
 import com.codingshuttle.week2.springbootwebtutorial.springbootwebtutorial.dto.EmployeeDTO;
 
 import com.codingshuttle.week2.springbootwebtutorial.springbootwebtutorial.services.EmployeeService;
+import jakarta.validation.Valid;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
@@ -59,14 +60,14 @@ public class EmployeeController {
         return "Hi from Post";
     }*/
   @PostMapping
-  public ResponseEntity<EmployeeDTO> createNewEmployee(@RequestBody EmployeeDTO inputEmployee){
+  public ResponseEntity<EmployeeDTO> createNewEmployee(@RequestBody @Valid EmployeeDTO inputEmployee){
 
       EmployeeDTO savedEmployeeDTO = employeeService.createNewEmployee(inputEmployee);
       return new ResponseEntity<>(savedEmployeeDTO, HttpStatus.CREATED); // Return 201 Created with the saved employee
   }
 
   @PutMapping(path = "/{employeeId}")
-  public ResponseEntity<EmployeeDTO> updateEmployeeById(@RequestBody EmployeeDTO employeeDTO,@PathVariable Long employeeId){
+  public ResponseEntity<EmployeeDTO> updateEmployeeById(@RequestBody @Valid EmployeeDTO employeeDTO,@PathVariable Long employeeId){
       return ResponseEntity.ok(employeeService.updateEmployeeById(employeeId,employeeDTO));// return HTTP 200 with employee data
     }
 

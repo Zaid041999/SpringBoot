@@ -23,6 +23,8 @@ public class EmployeeEntity {
     private String email;
     private Integer age;
     private LocalDate dateOfJoining;
+    private String role; //ADMIN or USER
+    private Double salary;
     @JsonProperty("isActive")
     private Boolean isActive;
 
