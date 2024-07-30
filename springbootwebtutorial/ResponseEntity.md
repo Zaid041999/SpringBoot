@@ -72,7 +72,7 @@ return employeeDTO
 
 2. **Using `map` to Transform the Value if Present**:
    - `.map(ResponseEntity::ok)` is applied if the `Optional` contains a value. The `map` method takes a function (in this case, `ResponseEntity::ok`), applies it to the value inside the `Optional`, and returns a new `Optional` containing the transformed value.
-   - `ResponseEntity::ok` is a method reference that effectively means `employeeDTO -> ResponseEntity.ok(employeeDTO)`. So, if `employeeDTO` is present, it will be transformed into `ResponseEntity.ok(employeeDTO)`.
+   - `ResponseEntity::ok` is a method reference that effectively means `employeeDTO1 -> ResponseEntity.ok(employeeDTO1)`. So, if `employeeDTO` is present, it will be transformed into `ResponseEntity.ok(employeeDTO)`.
 
 3. **Handling the Case Where the Value is Not Present**:
    - `.orElse(ResponseEntity.notFound().build())` is applied if the `Optional` is empty. If there is no value present, `orElse` will return `ResponseEntity.notFound().build()`, which creates a `ResponseEntity` with a 404 status code.
